@@ -1,0 +1,31 @@
+<div class="fx-100 fx-row fx-around-start mt-48 mx-48 fx-gap-12">
+  <div class="task-list" *ngFor="let tl of taskList">
+    <mat-toolbar>{{ tl.text }}</mat-toolbar>
+    <div class="task-list-content m-36 fx-col fx-gap-20">
+      <ng-container
+        *ngIf="getCardsByList$(cards, tl.id)?.length === 0 && tl.id === 'NEW'; else elseTemplate"
+      >
+        <app-card-edit-mode [(card)]="newCard">
+          <div class="fx-row fx-center-center">
+            <button
+              mat-mini-fab
+              color="primary"
+              [disabled]="!newCard.titulo || !newCard.conteudo"
+              (click)="insertNewCard()"
+            >
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </app-card-edit-mode>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <div
+          class="task-list-item"
+          *ngFor="let tli of getCardsByList$(cards, tl.id)"
+        >
+          <app-card [card]="tli" (onUpdate)="updateCard($event)" (onDelete)="deleteCard($event)"></app-card>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

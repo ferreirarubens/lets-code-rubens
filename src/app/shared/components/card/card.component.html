@@ -1,0 +1,34 @@
+<ng-container *ngIf="editMode; else elseTemplate">
+  <app-card-edit-mode [(card)]="card">
+    <div class="fx-row fx-end-center fx-gap-12">
+      <button mat-button color="primary" (click)="setEditMode()">
+        Cancelar
+      </button>
+      <button mat-flat-button color="primary" (click)="update()">Salvar</button>
+    </div>
+  </app-card-edit-mode>
+</ng-container>
+<ng-template #elseTemplate>
+  <mat-card>
+    <mat-card-header class="fx-row fx-between-center mb-24 pb-12 mx-24">
+      <mat-card-title class="m-0">{{ card.titulo }}</mat-card-title>
+      <button mat-icon-button (click)="setEditMode()">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </mat-card-header>
+    <mat-card-content class="mx-24">
+      <p>{{ card.conteudo }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="fx-row fx-center-center fx-gap-36 mt-48 pb-24">
+        <button mat-mini-fab color="primary" (click)="changeList(false)" [disabled]="card.lista === 'TODO'">
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="delete()"><mat-icon>delete</mat-icon></button>
+        <button mat-mini-fab color="primary" (click)="changeList(true)" [disabled]="card.lista === 'DONE'">
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</ng-template>

@@ -1,0 +1,16 @@
+<div class="w100 fx-row fx-center-center mt-100">
+  <mat-card  class="w-500 p-48 mat-color-blue-gray-100">
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-content>
+      <form class="fx-col fx-gap-12 mt-48" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="login" formControlName="login">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="senha" formControlName="senha" type="password">
+        </mat-form-field>
+        <button mat-raised-button color="accent" type="submit" [disabled]="!loginForm.valid">Login</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

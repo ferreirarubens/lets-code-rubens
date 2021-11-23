@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  scb-angular:
+    image: lets-code-rubens
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 8081:80

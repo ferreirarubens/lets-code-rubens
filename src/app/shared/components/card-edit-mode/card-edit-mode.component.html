@@ -1,0 +1,26 @@
+<mat-card>
+  <mat-card-content>
+    <form class="fx-col fx-start-stretch" #newForm="ngForm">
+      <mat-form-field appearance="outline">
+        <input
+          type="text"
+          matInput
+          placeholder="Título"
+          [(ngModel)]="card.titulo"
+          name="card.titulo"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <textarea
+          matInput
+          placeholder="Conteúdo"
+          [(ngModel)]="card.conteudo"
+          name="card.conteudo"
+          required
+        ></textarea>
+      </mat-form-field>
+      <ng-content></ng-content>
+    </form>
+  </mat-card-content>
+</mat-card>
