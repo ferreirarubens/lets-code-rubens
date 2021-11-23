@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LCCoreModule } from 'app/core';
 import { RouterModule } from '@angular/router';
 import { routes } from './app.routing';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { routes } from './app.routing';
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
-    LCCoreModule.forRoot()
+    LCCoreModule.forRoot(),
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,10 +1,10 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { JWTIntercept, AuthService, UserService, ErrorInterceptor } from './services';
 import { LCGuard } from './guards/auth.guard';
+import { AuthService, ErrorInterceptor, JWTIntercept, UserService } from './services';
 
 @NgModule({
   imports: [

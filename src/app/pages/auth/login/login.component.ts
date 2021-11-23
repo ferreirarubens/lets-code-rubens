@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
+  FormBuilder, FormGroup,
+  Validators
 } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { User } from 'app/core/models';
 import { AuthService, UserService } from 'app/core/services';
@@ -21,7 +20,8 @@ export class LoginComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _authService: AuthService,
     private _userService: UserService,
-    private _router: Router
+    private _router: Router,
+    private _snackBar: MatSnackBar
   ) {
     this.loginForm = this._formBuilder.group({
       login: ['letscode', Validators.required],
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this._userService.isLoggedIn()) {
+    if (this._userService.isLoggedIn()) {
       this._router.navigate(['/']);
     }
   }
@@ -40,10 +40,15 @@ export class LoginComponent implements OnInit {
       .login(this.loginForm.value)
       .toPromise()
       .then((resp) => {
-        if(resp) {
-          this._userService.login({ jwtToken: resp} as User);
+        if (resp) {
+          this._userService.login({ jwtToken: resp } as User);
           this._router.navigate(['/']);
+        } else {
+          this._snackBar.open('Usuário ou senha inválidos', 'Fechar', {
+            duration: 1000,
+            panelClass: ['mat-color-red'],
+          });
         }
-      });
+      })
   }
 }
